@@ -1,0 +1,80 @@
+if(norc==0&&eq==0)
+ {
+if(fir==0||fir==-1)
+	{
+		tem=cal;
+		cal2=b;
+		b=0;
+		if(cal==3||cal==4)
+		{
+			b=1;
+		}		
+	fir=fir+1;	
+	}
+		printf("A前:  b=%d,cal2=%d tem=%d cal %d\n",b,cal2,tem,cal);
+	 switch(tem)
+	{
+		case 1:
+		cal2= cal2+b;
+		value=0;
+		b=0;
+		break;
+		case 2:
+		cal2=cal2-b;
+		value=0;
+		b=0;
+		break;
+		case 3:
+		cal2=cal2*b;
+		value=0;
+		b=1;
+		break;
+		case 4:
+		cal2=cal2/b;
+		value=0;
+		b=1;
+		break;
+	
+	} 
+	
+	printf("A:  b=%d,cal2=%d tem=%d cal %d\n",b,cal2,tem,cal);
+ }
+ else if (norc==0&&eq==1)
+ {
+	  if(fir==0||fir==-1)
+	  {
+		  tem=cal;
+		  cal2=b;
+		  b=0;
+		  if(cal==3||cal==4)
+		  {
+			  b=1;
+		  }
+		  fir=fir+1;
+	  }
+	  printf("B前:  b=%d,cal2=%d tem=%d cal %d\n",b,cal2,tem,cal);
+	  switch(cal)
+	  {
+		  case 1:
+		  cal2= cal2+b;
+		  value=0;
+		  b=0;
+		  break;
+		  case 2:
+		  cal2=cal2-b;
+		  value=0;
+		  b=0;
+		  break;
+		  case 3:
+		  cal2=cal2*b;
+		  value=0;
+		  b=1;
+		  break;
+		  case 4:
+		 cal2=cal2/b;
+		  value=0;
+		  b=1;
+		  break;
+	  }
+	printf("B:  b=%d,cal2=%d tem=%d cal %d\n",b,cal2,tem,cal);
+ }

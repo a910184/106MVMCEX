@@ -1,0 +1,68 @@
+#include "ASA_Lib.h"
+#include<stdlib.h>
+#include <avr/interrupt.h>
+int temp,keyboard;
+int main(void)
+{
+	char output;
+	int keyflag=0;
+	ASA_M128_set();
+	/**************中斷設定把PE4與PF5腳位拉成輸入****************/
+	DDRE = DDRE & ~(0x20);
+	DDRF = DDRF & ~(0x20);
+	EICRB=0x00; /*設定中斷7:4偵知方式*/
+	EIMSK=0x20; /*設定中斷致能*/
+	/*********************************************************/
+while(1)
+{
+	if(temp==0)
+	{
+		keyflag=1;
+	}
+	if(keyboard!=0)
+	{
+
+		if(keyflag==1)
+		{
+				switch(keyboard)
+				{
+					case 1:output='N';  break;
+					case 2:output='E';  break;
+					case 3:output='V';  break;
+					case 4:output='E';  break;
+					case 5:output='R';  break;
+					case 6:output='C';  break;
+					case 7:output='A';  break;
+					case 8:output='R';  break;
+					case 9:output='E';  break;
+					case 10:output='Y'; break;
+					case 11:output='O'; break;
+					case 12:output='U'; break;
+					case 13:output='0'; break;
+					case 14:output='.'; break;
+					case 15:output='<'; break;
+					case 16:output='!'; break;
+				}
+			printf("%c",output);
+			keyboard=0;
+			keyflag=0;
+		}
+	}
+
+}
+
+
+
+}
+
+ISR(INT5_vect)
+{
+
+	cli();
+	ASA_KB00_get(2,100,1,&temp);
+	if(temp!=0)
+	{
+		keyboard = temp;
+	}
+	sei();
+}
