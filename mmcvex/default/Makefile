@@ -1,11 +1,11 @@
 ###############################################################################
-# Makefile for the project 1
+# Makefile for the project ex1
 ###############################################################################
 
 ## General Flags
-PROJECT = 1
+PROJECT = ex1
 MCU = atmega128
-TARGET = 1.elf
+TARGET = ex1.elf
 CC = avr-gcc
 
 CPP = avr-g++
@@ -15,7 +15,7 @@ COMMON = -mmcu=$(MCU)
 
 ## Compile options common for all C compilation units.
 CFLAGS = $(COMMON)
-CFLAGS += -Wall -gdwarf-2 -std=gnu99           -DF_CPU=11059200UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
+CFLAGS += -Wall -gdwarf-2 -Os -std=gnu99 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 CFLAGS += -MD -MP -MT $(*F).o -MF dep/$(@F).d 
 
 ## Assembly specific flags
@@ -25,7 +25,7 @@ ASMFLAGS += -x assembler-with-cpp -Wa,-gdwarf2
 
 ## Linker flags
 LDFLAGS = $(COMMON)
-LDFLAGS += -Wl,-u,vfprintf  -Wl,-u,vfscanf -Wl,-Map=1.map
+LDFLAGS +=  -Wl,-Map=ex1.map
 
 
 ## Intel Hex file production flags
@@ -36,20 +36,17 @@ HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
-## Libraries
-LIBS = -lprintf_flt -lscanf_flt 
-
 ## Objects that must be built in order to link
-OBJECTS = 1.o 
+OBJECTS = ex1.o 
 
 ## Objects explicitly added by the user
-LINKONLYOBJECTS = "D:\important data\106MMCVEX\mmcvex\ASA_Lib.o" 
+LINKONLYOBJECTS = 
 
 ## Build
-all: $(TARGET) 1.hex 1.eep 1.lss size
+all: $(TARGET) ex1.hex ex1.eep ex1.lss size
 
 ## Compile
-1.o: ../1.c
+ex1.o: ../ex1.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ##Link
@@ -72,7 +69,7 @@ size: ${TARGET}
 ## Clean target
 .PHONY: clean
 clean:
-	-rm -rf $(OBJECTS) 1.elf dep/* 1.hex 1.eep 1.lss 1.map
+	-rm -rf $(OBJECTS) ex1.elf dep/* ex1.hex ex1.eep ex1.lss ex1.map
 
 
 ## Other dependencies

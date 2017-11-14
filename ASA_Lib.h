@@ -1,7 +1,7 @@
 /*===============ASA Series Library===============*/
 
 /*****ReleaseDate*****/
-//2017/7/19
+//2017/7/27
 
 /*****Feature*****/
 
@@ -65,6 +65,13 @@ char M128_EXT_set(char LSByte, char Mask, char Shift, char Data);
 char M128_EXT_fpt(char LSByte, char Mask, char Shift, char Data);
 char M128_EXT_fgt(char LSByte, char Mask, char Shift, void *Data_p);
 char M128_EXT_isr(char Number, void (*function)(void));
+
+char M128_TIM_set(char Lsbyte, char Mask, char Shift, char Data);
+char M128_TIM_put(char LSbyte, char Bytes, void *Data_p);
+char M128_TIM_get(char LSByte, char Bytes, void *Data_p);
+char M128_TIM_fpt(char Lsbyte, char Mask, char Shift, char Data);
+char M128_TIM_isr(char Number,  void (*function)(void));
+char M128_TIM_isr_remove(char Number,  void (*function)(void));
 
 char ASA_UART_set(char ASAID, char ID, char LSByte, char Mask, char Shift, char Data);
 char ASA_UART_put(char ASAID, char ID, char LSByte, char Bytes, void *Data_p);
